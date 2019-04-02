@@ -18,6 +18,7 @@ namespace BigSchool_NHT.Controllers
         }
         // GET: Courses
         [Authorize]
+        [ValidateAntiForgeryToken]
         public ActionResult Create()
         {
             var viewModel = new CourseViewModel
