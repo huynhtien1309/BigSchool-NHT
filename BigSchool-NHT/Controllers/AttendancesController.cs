@@ -18,7 +18,7 @@ namespace BigSchool_NHT.Controllers
             _dbContext = new ApplicationDbContext();
         }  
         [HttpPost]
-        public IHttpActionResult Attend ([FromBody] int courseId)
+        public IHttpActionResult Attend ([FromBody] int courseId) 
         {
             var attendance = new Attendance
             {
