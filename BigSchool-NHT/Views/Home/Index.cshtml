@@ -33,7 +33,26 @@
                     <span class="category">
                         @course.Category.name
                     </span>
+                    <button data-course-id="@course.Id" class="btn btn-default btn-sm js-toggle-attendance">Going?</button>
                 </div>
             </li>
         }
 </ul>
+@section scripts 
+{
+    <script>
+        $(document).ready(function () {
+            var button = $(e.target);
+            $.post("/api/attendances", { courseId: button.attr("data-course-id") })
+            .done(function () {
+                button
+                    .removeClass("btn-default")
+                    .addClass("btn-info")
+                    .text("Going");
+            })
+            .fail(function () {
+                alert("Something failed!");
+            })
+        });
+    </script>    
+}
