@@ -1,21 +1,21 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Mine";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<link href="~/Content/Site.css" rel="stylesheet" />
 <h2>Mine</h2>
+
 <ul class="course">
-    @foreach( var course in Model)
+    @foreach (var course in Model)
     {
         <li>
             <div class="date">
                 <div class="month">
                     @course.DateTime.ToString("MM")
-                </div>   
+                </div>
                 <div class="day">
                     @course.DateTime.ToString("dd")
-                </div>  
+                </div>
             </div>
             <div class="details">
                 <span class="lecturer">
@@ -26,13 +26,13 @@
                 </span>
             </div>
             <div class="action">
-                <a href="@Url.Action("Edit","Courses", new { id = course.Id})">Edit</a>
+                <a href="@Url.Action("Edit", "Courses", new { id = course.Id    })">Edit</a>
                 <a href="#" class="js-cancel-course" data-course-id="@course.Id">Cancel</a>
             </div>
         </li>
     }
 </ul>
-@section scripts 
+@section scripts
 {
     <script>
         $(document).ready(function () {

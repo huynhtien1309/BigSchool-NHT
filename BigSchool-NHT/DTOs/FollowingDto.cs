@@ -7,6 +7,6 @@ namespace BigSchool_NHT.DTOs
 {
     public class FollowingDto
     {
-        public string FolloweeId { get; set; }
+        public string FollweeId { get; set; }
     }
 }

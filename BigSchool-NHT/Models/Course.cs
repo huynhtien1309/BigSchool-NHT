@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BigSchool_NHT.Migrations;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace BigSchool_NHT.Models
         [Required]
         public string LecturerId { get; set; }
         [Required]
-        [StringLength(255)]
+        [StringLength(225)]
         public string Place { get; set; }
         public DateTime DateTime { get; set; }
         public Category Category { get; set; }
@@ -22,5 +23,5 @@ namespace BigSchool_NHT.Models
         public byte CategoryId { get; set; }
     }
 
-    
+
 }

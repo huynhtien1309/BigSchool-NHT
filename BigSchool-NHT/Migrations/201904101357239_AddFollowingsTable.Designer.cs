@@ -7,13 +7,13 @@ namespace BigSchool_NHT.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddIsCanceledColumnToCourse : IMigrationMetadata
+    public sealed partial class AddFollowingsTable : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddIsCanceledColumnToCourse));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddFollowingsTable));
         
         string IMigrationMetadata.Id
         {
-            get { return "201904030518444_AddIsCanceledColumnToCourse"; }
+            get { return "201904101357239_AddFollowingsTable"; }
         }
         
         string IMigrationMetadata.Source

@@ -2,66 +2,68 @@
 @{
     ViewBag.Title = "Home Page";
 }
-
+<link href="~/Content/Site.css" rel="stylesheet" />
 <ul class="course">
-        @foreach(var course in Model.UpcommingCourses)
-        {
-            <li>
-                <div class="date">
-                    <div class="month">
-                        @course.DateTime.ToString("MM")
-                    </div>
-                    <div class="day">
-                        @course.DateTime.ToString("dd")
-                    </div>
+    @foreach (var course in Model.UpcommingCourses)
+    {
+        <li>
+            <div class="date">
+                <div class="moth">
+                    @course.DateTime.ToString("MM")
                 </div>
-                <div class="details">
-                    <span class=" lecturer">
-                        @course.Lecturer.Name
-                        @if(Model.ShowAction)
-                        {
-                            <button class="btn btn-link btn-sm js-toggle-follow" data-user-id="@course.LecturerId">Follow</button>
-                        }
-                    </span>
-                    <span class="category">
-                        @course.Category.name
-                        @if(Model.ShowAction)
-                        {
-                            <button data-course-id="@course.Id" class=" btn btn-link btn-sm js-toggle-attendance">Going?</button>
-                        }
-                    </span>
-                    <button data-course-id="@course.Id" class="btn btn-default btn-sm js-toggle-attendance">Going?</button>
+                <div class="day">
+                    @course.DateTime.ToString("dd")
                 </div>
-            </li>
-        }
+            </div>
+            <div class="details">
+                <div class="lecture">
+                    @course.Lecturer.Name
+                    @if (Model.ShowAction)
+                    {
+                        <button class="btn btn-default btn-sm js-toggle-follow" data-sourse-id="@course.LecturerId">Follow</button>
+                    }
+                </div>
+                <div class="category">
+                    @course.Category.name
+                </div>
+                @if (Model.ShowAction)
+                {
+                    <button data-sourse-id="@course.Id" class="btn btn-default btn-sm js-toggle-attendance">Going</button>
+                }
+            </div>
+        </li>
+    }
+
+
 </ul>
-@section scripts 
+@section scripts
 {
     <script>
         $(document).ready(function () {
-            $(".js-toggle-attendance").click(function(e){
+            $(".js-toggle-attendance").click(function (e) {
                 var button = $(e.target);
-                $.post("/api/attendances", { courseId: button.attr("data-course-id") })
+                $.post("api/attendances", { courseId: button.attr("data-course-id") })
                 .done(function () {
                     button
                         .removeClass("btn-default")
-                        .addClass("btn-info")
+                        .assClass("btn-info")
                         .text("Going");
                 })
                 .fail(function () {
-                    alert("Something failed!");
+                    alert("Something failed");
                 });
             });
             $(".js-toggle-follow").click(function (e) {
                 var button = $(e.target);
-                $.post("/api/followings", { courseId: button.attr("data-user-id") })
+                $.post("api/followings", { courseId: button.attr("data-course-id") })
                 .done(function () {
+                    button
                     button.text("Following");
                 })
                 .fail(function () {
-                    alert("Something failed!");
+                    alert("Something failed");
                 });
             });
         });
-    </script>    
+    </script>
 }

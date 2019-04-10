@@ -1,4 +1,5 @@
-﻿using BigSchool_NHT.DTOs;
+﻿
+using BigSchool_NHT.DTOs;
 using BigSchool_NHT.Models;
 using Microsoft.AspNet.Identity;
 using System;
@@ -12,24 +13,25 @@ namespace BigSchool_NHT.Controllers
 {
     public class FollowingsController : ApiController
     {
-        private readonly ApplicationDbContext _dbContext;
+        // GET: Followings
+        private readonly ApplicationDbContext dbcontext;
         public FollowingsController()
         {
-            _dbContext = new ApplicationDbContext();
+            dbcontext = new ApplicationDbContext();
         }
 
         public IHttpActionResult Follow(FollowingDto followingDto)
         {
             var userId = User.Identity.GetUserId();
-            if (_dbContext.Follwings.Any(f => f.FollowerId == userId && f.FolloweeId == followingDto.FolloweeId))
+            if (dbcontext.Follwings.Any(f => f.FollowerId == userId && f.FolloweeId == followingDto.FollweeId))
                 return BadRequest("Following already exists!");
             var folowing = new Following
             {
                 FollowerId = userId,
-                FolloweeId = followingDto.FolloweeId
+                FolloweeId = followingDto.FollweeId
             };
-            _dbContext.Follwings.Add(folowing);
-            _dbContext.SaveChanges();
+            dbcontext.Follwings.Add(folowing);
+            dbcontext.SaveChanges();
             return Ok();
         }
     }
